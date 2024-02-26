@@ -48,7 +48,7 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">make_qdec</span><span class="op">(</span><span class="va">data</span>, <span class="va">formula</span>, path <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">make_qdec</span><span class="op">(</span><span class="va">data</span>, <span class="va">formula</span>, path <span class="op">=</span> <span class="cn">NULL</span>, keep_orig <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -60,14 +60,144 @@ will be accepted.</p></dd>
 
 
 <dt>formula</dt>
-<dd><p>a model <code><a href="https://rdrr.io/r/stats/formula.html" class="external-link">formula</a></code> or <code><a href="https://rdrr.io/r/stats/terms.html" class="external-link">terms</a></code> object</p></dd>
+<dd><p>a model <code><a href="https://rdrr.io/r/stats/formula.html" class="external-link">formula</a></code> or
+<code><a href="https://rdrr.io/r/stats/terms.html" class="external-link">terms</a></code> object. For simple qdec file,
+with binary columns for all levels of a factor,
+make sure to include a formula with <code>-1</code> to
+remove the intercept.</p></dd>
 
 
 <dt>path</dt>
 <dd><p>an option file path to write qdec to csv</p></dd>
 
-</dl></div>
 
+<dt>keep_orig</dt>
+<dd><p>logical or vector of column names,
+to keep the original data in the output.
+Default is <code>FALSE</code>.</p></dd>
+
+</dl></div>
+    <div class="section level2">
+    <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
+    
+
+<p>data.frame with model matrix and
+scaled continuous variables.</p>
+    </div>
+
+    <div class="section level2">
+    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">cars</span> <span class="op">&lt;-</span> <span class="va">mtcars</span></span></span>
+<span class="r-in"><span><span class="va">cars</span><span class="op">$</span><span class="va">cyl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">as.factor</a></span><span class="op">(</span><span class="va">cars</span><span class="op">$</span><span class="va">cyl</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">cars</span><span class="op">$</span><span class="va">gear</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">as.factor</a></span><span class="op">(</span><span class="va">cars</span><span class="op">$</span><span class="va">gear</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">make_qdec</span><span class="op">(</span><span class="va">cars</span>, <span class="va">mpg</span> <span class="op">~</span> <span class="va">cyl</span> <span class="op">+</span> <span class="va">hp</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                     (Intercept) cyl6 cyl8        mpgz         hpz</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Mazda RX4                     1    1    0  0.15088482 -0.53509284</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Mazda RX4 Wag                 1    1    0  0.15088482 -0.53509284</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Datsun 710                    1    0    0  0.44954345 -0.78304046</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Hornet 4 Drive                1    1    0  0.21725341 -0.53509284</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Hornet Sportabout             1    0    1 -0.23073453  0.41294217</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Valiant                       1    1    0 -0.33028740 -0.60801861</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Duster 360                    1    0    1 -0.96078893  1.43390296</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Merc 240D                     1    0    0  0.71501778 -1.23518023</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Merc 230                      1    0    0  0.44954345 -0.75387015</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Merc 280                      1    1    0 -0.14777380 -0.34548584</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Merc 280C                     1    1    0 -0.38006384 -0.34548584</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Merc 450SE                    1    0    1 -0.61235388  0.48586794</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Merc 450SL                    1    0    1 -0.46302456  0.48586794</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Merc 450SLC                   1    0    1 -0.81145962  0.48586794</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Cadillac Fleetwood            1    0    1 -1.60788262  0.85049680</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Lincoln Continental           1    0    1 -1.60788262  0.99634834</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Chrysler Imperial             1    0    1 -0.89442035  1.21512565</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Fiat 128                      1    0    0  2.04238943 -1.17683962</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Honda Civic                   1    0    0  1.71054652 -1.38103178</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Toyota Corolla                1    0    0  2.29127162 -1.19142477</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Toyota Corona                 1    0    0  0.23384555 -0.72469984</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Dodge Challenger              1    0    1 -0.76168319  0.04831332</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> AMC Javelin                   1    0    1 -0.81145962  0.04831332</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Camaro Z28                    1    0    1 -1.12671039  1.43390296</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Pontiac Firebird              1    0    1 -0.14777380  0.41294217</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Fiat X1-9                     1    0    0  1.19619000 -1.17683962</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Porsche 914-2                 1    0    0  0.98049211 -0.81221077</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Lotus Europa                  1    0    0  1.71054652 -0.49133738</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Ford Pantera L                1    0    1 -0.71190675  1.71102089</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Ferrari Dino                  1    1    0 -0.06481307  0.41294217</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Maserati Bora                 1    0    1 -0.84464392  2.74656682</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Volvo 142E                    1    0    0  0.21725341 -0.54967799</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Remove the intercept, necessary to follow</span></span></span>
+<span class="r-in"><span><span class="co"># steps from Freesurfer docs</span></span></span>
+<span class="r-in"><span><span class="fu">make_qdec</span><span class="op">(</span><span class="va">cars</span>, <span class="va">mpg</span> <span class="op">~</span> <span class="op">-</span><span class="fl">1</span> <span class="op">+</span> <span class="va">cyl</span> <span class="op">+</span> <span class="va">hp</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                     cyl4 cyl6 cyl8        mpgz         hpz</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Mazda RX4              0    1    0  0.15088482 -0.53509284</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Mazda RX4 Wag          0    1    0  0.15088482 -0.53509284</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Datsun 710             1    0    0  0.44954345 -0.78304046</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Hornet 4 Drive         0    1    0  0.21725341 -0.53509284</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Hornet Sportabout      0    0    1 -0.23073453  0.41294217</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Valiant                0    1    0 -0.33028740 -0.60801861</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Duster 360             0    0    1 -0.96078893  1.43390296</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Merc 240D              1    0    0  0.71501778 -1.23518023</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Merc 230               1    0    0  0.44954345 -0.75387015</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Merc 280               0    1    0 -0.14777380 -0.34548584</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Merc 280C              0    1    0 -0.38006384 -0.34548584</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Merc 450SE             0    0    1 -0.61235388  0.48586794</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Merc 450SL             0    0    1 -0.46302456  0.48586794</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Merc 450SLC            0    0    1 -0.81145962  0.48586794</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Cadillac Fleetwood     0    0    1 -1.60788262  0.85049680</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Lincoln Continental    0    0    1 -1.60788262  0.99634834</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Chrysler Imperial      0    0    1 -0.89442035  1.21512565</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Fiat 128               1    0    0  2.04238943 -1.17683962</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Honda Civic            1    0    0  1.71054652 -1.38103178</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Toyota Corolla         1    0    0  2.29127162 -1.19142477</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Toyota Corona          1    0    0  0.23384555 -0.72469984</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Dodge Challenger       0    0    1 -0.76168319  0.04831332</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> AMC Javelin            0    0    1 -0.81145962  0.04831332</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Camaro Z28             0    0    1 -1.12671039  1.43390296</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Pontiac Firebird       0    0    1 -0.14777380  0.41294217</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Fiat X1-9              1    0    0  1.19619000 -1.17683962</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Porsche 914-2          1    0    0  0.98049211 -0.81221077</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Lotus Europa           1    0    0  1.71054652 -0.49133738</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Ford Pantera L         0    0    1 -0.71190675  1.71102089</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Ferrari Dino           0    1    0 -0.06481307  0.41294217</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Maserati Bora          0    0    1 -0.84464392  2.74656682</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Volvo 142E             1    0    0  0.21725341 -0.54967799</span>
+<span class="r-in"><span><span class="fu">make_qdec</span><span class="op">(</span><span class="va">cars</span>, <span class="va">mpg</span> <span class="op">~</span> <span class="op">-</span><span class="fl">1</span> <span class="op">+</span> <span class="va">cyl</span> <span class="op">+</span> <span class="va">hp</span> <span class="op">+</span> <span class="va">gear</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                     cyl4 cyl6 cyl8 gear4 gear5        mpgz         hpz</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Mazda RX4              0    1    0     1     0  0.15088482 -0.53509284</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Mazda RX4 Wag          0    1    0     1     0  0.15088482 -0.53509284</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Datsun 710             1    0    0     1     0  0.44954345 -0.78304046</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Hornet 4 Drive         0    1    0     0     0  0.21725341 -0.53509284</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Hornet Sportabout      0    0    1     0     0 -0.23073453  0.41294217</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Valiant                0    1    0     0     0 -0.33028740 -0.60801861</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Duster 360             0    0    1     0     0 -0.96078893  1.43390296</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Merc 240D              1    0    0     1     0  0.71501778 -1.23518023</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Merc 230               1    0    0     1     0  0.44954345 -0.75387015</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Merc 280               0    1    0     1     0 -0.14777380 -0.34548584</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Merc 280C              0    1    0     1     0 -0.38006384 -0.34548584</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Merc 450SE             0    0    1     0     0 -0.61235388  0.48586794</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Merc 450SL             0    0    1     0     0 -0.46302456  0.48586794</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Merc 450SLC            0    0    1     0     0 -0.81145962  0.48586794</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Cadillac Fleetwood     0    0    1     0     0 -1.60788262  0.85049680</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Lincoln Continental    0    0    1     0     0 -1.60788262  0.99634834</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Chrysler Imperial      0    0    1     0     0 -0.89442035  1.21512565</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Fiat 128               1    0    0     1     0  2.04238943 -1.17683962</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Honda Civic            1    0    0     1     0  1.71054652 -1.38103178</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Toyota Corolla         1    0    0     1     0  2.29127162 -1.19142477</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Toyota Corona          1    0    0     0     0  0.23384555 -0.72469984</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Dodge Challenger       0    0    1     0     0 -0.76168319  0.04831332</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> AMC Javelin            0    0    1     0     0 -0.81145962  0.04831332</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Camaro Z28             0    0    1     0     0 -1.12671039  1.43390296</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Pontiac Firebird       0    0    1     0     0 -0.14777380  0.41294217</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Fiat X1-9              1    0    0     1     0  1.19619000 -1.17683962</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Porsche 914-2          1    0    0     0     1  0.98049211 -0.81221077</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Lotus Europa           1    0    0     0     1  1.71054652 -0.49133738</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Ford Pantera L         0    0    1     0     1 -0.71190675  1.71102089</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Ferrari Dino           0    1    0     0     1 -0.06481307  0.41294217</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Maserati Bora          0    0    1     0     1 -0.84464392  2.74656682</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Volvo 142E             1    0    0     1     0  0.21725341 -0.54967799</span>
+</code></pre></div>
+    </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside></div>
 
