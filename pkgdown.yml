@@ -1,0 +1,9 @@
+pandoc: 2.19.2
+pkgdown: 2.0.7
+pkgdown_sha: ~
+articles: {}
+last_built: 2024-02-26T20:38Z
+urls:
+  reference: http://www.capro.dev/freesurfer.lme/reference
+  article: http://www.capro.dev/freesurfer.lme/articles
+
