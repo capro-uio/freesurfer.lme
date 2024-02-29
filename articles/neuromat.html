@@ -113,59 +113,56 @@ intercept, which would make sure that factors have all levels
 represented in the qdec file.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/make_fs_qdec.html">make_fs_qdec</a></span><span class="op">(</span><span class="va">cars</span>, <span class="va">mpg</span> <span class="op">~</span> <span class="op">-</span><span class="fl">1</span> <span class="op">+</span> <span class="va">cyl</span> <span class="op">+</span> <span class="va">hp</span><span class="op">)</span></span>
-<span><span class="co">#&gt;                   cyl4 cyl6 cyl8       mpgz       dispz        hpz      dratz</span></span>
-<span><span class="co">#&gt; Mazda RX4            0    1    0  0.1508848 -0.57061982 -0.5350928  0.5675137</span></span>
-<span><span class="co">#&gt; Mazda RX4 Wag        0    1    0  0.1508848 -0.57061982 -0.5350928  0.5675137</span></span>
-<span><span class="co">#&gt; Datsun 710           1    0    0  0.4495434 -0.99018209 -0.7830405  0.4739996</span></span>
-<span><span class="co">#&gt; Hornet 4 Drive       0    1    0  0.2172534  0.22009369 -0.5350928 -0.9661175</span></span>
-<span><span class="co">#&gt; Hornet Sportabout    0    0    1 -0.2307345  1.04308123  0.4129422 -0.8351978</span></span>
-<span><span class="co">#&gt; Valiant              0    1    0 -0.3302874 -0.04616698 -0.6080186 -1.5646078</span></span>
-<span><span class="co">#&gt; Duster 360           0    0    1 -0.9607889  1.04308123  1.4339030 -0.7229809</span></span>
-<span><span class="co">#&gt; Merc 240D            1    0    0  0.7150178 -0.67793094 -1.2351802  0.1747545</span></span>
-<span><span class="co">#&gt;                            wtz      qsecz        vsz        amz      carbz</span></span>
-<span><span class="co">#&gt; Mazda RX4         -0.610399567 -0.7771651 -0.8680278  1.1899014  0.7352031</span></span>
-<span><span class="co">#&gt; Mazda RX4 Wag     -0.349785269 -0.4637808 -0.8680278  1.1899014  0.7352031</span></span>
-<span><span class="co">#&gt; Datsun 710        -0.917004624  0.4260068  1.1160357  1.1899014 -1.1221521</span></span>
-<span><span class="co">#&gt; Hornet 4 Drive    -0.002299538  0.8904872  1.1160357 -0.8141431 -1.1221521</span></span>
-<span><span class="co">#&gt; Hornet Sportabout  0.227654255 -0.4637808 -0.8680278 -0.8141431 -0.5030337</span></span>
-<span><span class="co">#&gt; Valiant            0.248094592  1.3269868  1.1160357 -0.8141431 -1.1221521</span></span>
-<span><span class="co">#&gt; Duster 360         0.360516446 -1.1241264 -0.8680278 -0.8141431  0.7352031</span></span>
-<span><span class="co">#&gt; Merc 240D         -0.027849959  1.2038715  1.1160357 -0.8141431 -0.5030337</span></span>
-<span><span class="co">#&gt;  [ reached 'max' / getOption("max.print") -- omitted 24 rows ]</span></span></code></pre></div>
+<span><span class="co">#&gt;                     cyl4 cyl6 cyl8       mpgz        hpz</span></span>
+<span><span class="co">#&gt; Mazda RX4              0    1    0  0.1508848 -0.5350928</span></span>
+<span><span class="co">#&gt; Mazda RX4 Wag          0    1    0  0.1508848 -0.5350928</span></span>
+<span><span class="co">#&gt; Datsun 710             1    0    0  0.4495434 -0.7830405</span></span>
+<span><span class="co">#&gt; Hornet 4 Drive         0    1    0  0.2172534 -0.5350928</span></span>
+<span><span class="co">#&gt; Hornet Sportabout      0    0    1 -0.2307345  0.4129422</span></span>
+<span><span class="co">#&gt; Valiant                0    1    0 -0.3302874 -0.6080186</span></span>
+<span><span class="co">#&gt; Duster 360             0    0    1 -0.9607889  1.4339030</span></span>
+<span><span class="co">#&gt; Merc 240D              1    0    0  0.7150178 -1.2351802</span></span>
+<span><span class="co">#&gt; Merc 230               1    0    0  0.4495434 -0.7538702</span></span>
+<span><span class="co">#&gt; Merc 280               0    1    0 -0.1477738 -0.3454858</span></span>
+<span><span class="co">#&gt; Merc 280C              0    1    0 -0.3800638 -0.3454858</span></span>
+<span><span class="co">#&gt; Merc 450SE             0    0    1 -0.6123539  0.4858679</span></span>
+<span><span class="co">#&gt; Merc 450SL             0    0    1 -0.4630246  0.4858679</span></span>
+<span><span class="co">#&gt; Merc 450SLC            0    0    1 -0.8114596  0.4858679</span></span>
+<span><span class="co">#&gt; Cadillac Fleetwood     0    0    1 -1.6078826  0.8504968</span></span>
+<span><span class="co">#&gt; Lincoln Continental    0    0    1 -1.6078826  0.9963483</span></span>
+<span><span class="co">#&gt; Chrysler Imperial      0    0    1 -0.8944204  1.2151256</span></span>
+<span><span class="co">#&gt; Fiat 128               1    0    0  2.0423894 -1.1768396</span></span>
+<span><span class="co">#&gt; Honda Civic            1    0    0  1.7105465 -1.3810318</span></span>
+<span><span class="co">#&gt; Toyota Corolla         1    0    0  2.2912716 -1.1914248</span></span>
+<span><span class="co">#&gt;  [ reached 'max' / getOption("max.print") -- omitted 12 rows ]</span></span></code></pre></div>
 <p>If you do not include <code>-1</code>, the model will not expose all
 levels of factors, but capture the first levels of each factor in the
 <code>Intercept</code> which will consist of only the value
 <code>1</code>.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/make_fs_qdec.html">make_fs_qdec</a></span><span class="op">(</span><span class="va">cars</span>, <span class="va">mpg</span> <span class="op">~</span> <span class="va">cyl</span> <span class="op">+</span> <span class="va">hp</span><span class="op">)</span></span>
-<span><span class="co">#&gt;                   (Intercept) cyl6 cyl8       mpgz       dispz        hpz</span></span>
-<span><span class="co">#&gt; Mazda RX4                   1    1    0  0.1508848 -0.57061982 -0.5350928</span></span>
-<span><span class="co">#&gt; Mazda RX4 Wag               1    1    0  0.1508848 -0.57061982 -0.5350928</span></span>
-<span><span class="co">#&gt; Datsun 710                  1    0    0  0.4495434 -0.99018209 -0.7830405</span></span>
-<span><span class="co">#&gt; Hornet 4 Drive              1    1    0  0.2172534  0.22009369 -0.5350928</span></span>
-<span><span class="co">#&gt; Hornet Sportabout           1    0    1 -0.2307345  1.04308123  0.4129422</span></span>
-<span><span class="co">#&gt; Valiant                     1    1    0 -0.3302874 -0.04616698 -0.6080186</span></span>
-<span><span class="co">#&gt; Duster 360                  1    0    1 -0.9607889  1.04308123  1.4339030</span></span>
-<span><span class="co">#&gt; Merc 240D                   1    0    0  0.7150178 -0.67793094 -1.2351802</span></span>
-<span><span class="co">#&gt;                        dratz          wtz      qsecz        vsz        amz</span></span>
-<span><span class="co">#&gt; Mazda RX4          0.5675137 -0.610399567 -0.7771651 -0.8680278  1.1899014</span></span>
-<span><span class="co">#&gt; Mazda RX4 Wag      0.5675137 -0.349785269 -0.4637808 -0.8680278  1.1899014</span></span>
-<span><span class="co">#&gt; Datsun 710         0.4739996 -0.917004624  0.4260068  1.1160357  1.1899014</span></span>
-<span><span class="co">#&gt; Hornet 4 Drive    -0.9661175 -0.002299538  0.8904872  1.1160357 -0.8141431</span></span>
-<span><span class="co">#&gt; Hornet Sportabout -0.8351978  0.227654255 -0.4637808 -0.8680278 -0.8141431</span></span>
-<span><span class="co">#&gt; Valiant           -1.5646078  0.248094592  1.3269868  1.1160357 -0.8141431</span></span>
-<span><span class="co">#&gt; Duster 360        -0.7229809  0.360516446 -1.1241264 -0.8680278 -0.8141431</span></span>
-<span><span class="co">#&gt; Merc 240D          0.1747545 -0.027849959  1.2038715  1.1160357 -0.8141431</span></span>
-<span><span class="co">#&gt;                        carbz</span></span>
-<span><span class="co">#&gt; Mazda RX4          0.7352031</span></span>
-<span><span class="co">#&gt; Mazda RX4 Wag      0.7352031</span></span>
-<span><span class="co">#&gt; Datsun 710        -1.1221521</span></span>
-<span><span class="co">#&gt; Hornet 4 Drive    -1.1221521</span></span>
-<span><span class="co">#&gt; Hornet Sportabout -0.5030337</span></span>
-<span><span class="co">#&gt; Valiant           -1.1221521</span></span>
-<span><span class="co">#&gt; Duster 360         0.7352031</span></span>
-<span><span class="co">#&gt; Merc 240D         -0.5030337</span></span>
-<span><span class="co">#&gt;  [ reached 'max' / getOption("max.print") -- omitted 24 rows ]</span></span></code></pre></div>
+<span><span class="co">#&gt;                     (Intercept) cyl6 cyl8       mpgz        hpz</span></span>
+<span><span class="co">#&gt; Mazda RX4                     1    1    0  0.1508848 -0.5350928</span></span>
+<span><span class="co">#&gt; Mazda RX4 Wag                 1    1    0  0.1508848 -0.5350928</span></span>
+<span><span class="co">#&gt; Datsun 710                    1    0    0  0.4495434 -0.7830405</span></span>
+<span><span class="co">#&gt; Hornet 4 Drive                1    1    0  0.2172534 -0.5350928</span></span>
+<span><span class="co">#&gt; Hornet Sportabout             1    0    1 -0.2307345  0.4129422</span></span>
+<span><span class="co">#&gt; Valiant                       1    1    0 -0.3302874 -0.6080186</span></span>
+<span><span class="co">#&gt; Duster 360                    1    0    1 -0.9607889  1.4339030</span></span>
+<span><span class="co">#&gt; Merc 240D                     1    0    0  0.7150178 -1.2351802</span></span>
+<span><span class="co">#&gt; Merc 230                      1    0    0  0.4495434 -0.7538702</span></span>
+<span><span class="co">#&gt; Merc 280                      1    1    0 -0.1477738 -0.3454858</span></span>
+<span><span class="co">#&gt; Merc 280C                     1    1    0 -0.3800638 -0.3454858</span></span>
+<span><span class="co">#&gt; Merc 450SE                    1    0    1 -0.6123539  0.4858679</span></span>
+<span><span class="co">#&gt; Merc 450SL                    1    0    1 -0.4630246  0.4858679</span></span>
+<span><span class="co">#&gt; Merc 450SLC                   1    0    1 -0.8114596  0.4858679</span></span>
+<span><span class="co">#&gt; Cadillac Fleetwood            1    0    1 -1.6078826  0.8504968</span></span>
+<span><span class="co">#&gt; Lincoln Continental           1    0    1 -1.6078826  0.9963483</span></span>
+<span><span class="co">#&gt; Chrysler Imperial             1    0    1 -0.8944204  1.2151256</span></span>
+<span><span class="co">#&gt; Fiat 128                      1    0    0  2.0423894 -1.1768396</span></span>
+<span><span class="co">#&gt; Honda Civic                   1    0    0  1.7105465 -1.3810318</span></span>
+<span><span class="co">#&gt; Toyota Corolla                1    0    0  2.2912716 -1.1914248</span></span>
+<span><span class="co">#&gt;  [ reached 'max' / getOption("max.print") -- omitted 12 rows ]</span></span></code></pre></div>
 <p><code>-1</code> makes sure you get a qdec as expected from the <a href="https://surfer.nmr.mgh.harvard.edu/fswiki/LinearMixedEffectsModels" class="external-link">Freesurfer
 documentation</a></p>
 </div>
@@ -180,28 +177,20 @@ is <code>FALSE</code>, and by switching to <code>TRUE</code> you keep
 the original data <em>of the columns in your model</em>.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/make_fs_qdec.html">make_fs_qdec</a></span><span class="op">(</span><span class="va">cars</span>, <span class="va">mpg</span> <span class="op">~</span> <span class="op">-</span><span class="fl">1</span> <span class="op">+</span> <span class="va">cyl</span> <span class="op">+</span> <span class="va">hp</span>, keep <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="co">#&gt;                   cyl4 cyl6 cyl8       mpgz       dispz        hpz      dratz</span></span>
-<span><span class="co">#&gt; Mazda RX4            0    1    0  0.1508848 -0.57061982 -0.5350928  0.5675137</span></span>
-<span><span class="co">#&gt; Mazda RX4 Wag        0    1    0  0.1508848 -0.57061982 -0.5350928  0.5675137</span></span>
-<span><span class="co">#&gt; Datsun 710           1    0    0  0.4495434 -0.99018209 -0.7830405  0.4739996</span></span>
-<span><span class="co">#&gt; Hornet 4 Drive       0    1    0  0.2172534  0.22009369 -0.5350928 -0.9661175</span></span>
-<span><span class="co">#&gt; Hornet Sportabout    0    0    1 -0.2307345  1.04308123  0.4129422 -0.8351978</span></span>
-<span><span class="co">#&gt; Valiant              0    1    0 -0.3302874 -0.04616698 -0.6080186 -1.5646078</span></span>
-<span><span class="co">#&gt;                            wtz      qsecz        vsz        amz      carbz  mpg</span></span>
-<span><span class="co">#&gt; Mazda RX4         -0.610399567 -0.7771651 -0.8680278  1.1899014  0.7352031 21.0</span></span>
-<span><span class="co">#&gt; Mazda RX4 Wag     -0.349785269 -0.4637808 -0.8680278  1.1899014  0.7352031 21.0</span></span>
-<span><span class="co">#&gt; Datsun 710        -0.917004624  0.4260068  1.1160357  1.1899014 -1.1221521 22.8</span></span>
-<span><span class="co">#&gt; Hornet 4 Drive    -0.002299538  0.8904872  1.1160357 -0.8141431 -1.1221521 21.4</span></span>
-<span><span class="co">#&gt; Hornet Sportabout  0.227654255 -0.4637808 -0.8680278 -0.8141431 -0.5030337 18.7</span></span>
-<span><span class="co">#&gt; Valiant            0.248094592  1.3269868  1.1160357 -0.8141431 -1.1221521 18.1</span></span>
-<span><span class="co">#&gt;                   cyl  hp</span></span>
-<span><span class="co">#&gt; Mazda RX4           6 110</span></span>
-<span><span class="co">#&gt; Mazda RX4 Wag       6 110</span></span>
-<span><span class="co">#&gt; Datsun 710          4  93</span></span>
-<span><span class="co">#&gt; Hornet 4 Drive      6 110</span></span>
-<span><span class="co">#&gt; Hornet Sportabout   8 175</span></span>
-<span><span class="co">#&gt; Valiant             6 105</span></span>
-<span><span class="co">#&gt;  [ reached 'max' / getOption("max.print") -- omitted 26 rows ]</span></span></code></pre></div>
+<span><span class="co">#&gt;                   cyl4 cyl6 cyl8       mpgz        hpz  mpg cyl  hp</span></span>
+<span><span class="co">#&gt; Mazda RX4            0    1    0  0.1508848 -0.5350928 21.0   6 110</span></span>
+<span><span class="co">#&gt; Mazda RX4 Wag        0    1    0  0.1508848 -0.5350928 21.0   6 110</span></span>
+<span><span class="co">#&gt; Datsun 710           1    0    0  0.4495434 -0.7830405 22.8   4  93</span></span>
+<span><span class="co">#&gt; Hornet 4 Drive       0    1    0  0.2172534 -0.5350928 21.4   6 110</span></span>
+<span><span class="co">#&gt; Hornet Sportabout    0    0    1 -0.2307345  0.4129422 18.7   8 175</span></span>
+<span><span class="co">#&gt; Valiant              0    1    0 -0.3302874 -0.6080186 18.1   6 105</span></span>
+<span><span class="co">#&gt; Duster 360           0    0    1 -0.9607889  1.4339030 14.3   8 245</span></span>
+<span><span class="co">#&gt; Merc 240D            1    0    0  0.7150178 -1.2351802 24.4   4  62</span></span>
+<span><span class="co">#&gt; Merc 230             1    0    0  0.4495434 -0.7538702 22.8   4  95</span></span>
+<span><span class="co">#&gt; Merc 280             0    1    0 -0.1477738 -0.3454858 19.2   6 123</span></span>
+<span><span class="co">#&gt; Merc 280C            0    1    0 -0.3800638 -0.3454858 17.8   6 123</span></span>
+<span><span class="co">#&gt; Merc 450SE           0    0    1 -0.6123539  0.4858679 16.4   8 180</span></span>
+<span><span class="co">#&gt;  [ reached 'max' / getOption("max.print") -- omitted 20 rows ]</span></span></code></pre></div>
 <p>It is recommended that you also have the base-id’s of the data in
 their own column, which you can also request to have in the qdec by
 using the id-column’s name in the <code>keep</code> argument.</p>
@@ -210,28 +199,33 @@ using the id-column’s name in the <code>keep</code> argument.</p>
 <span><span class="fu"><a href="../reference/make_fs_qdec.html">make_fs_qdec</a></span><span class="op">(</span><span class="va">cars</span>, </span>
 <span>             <span class="va">mpg</span> <span class="op">~</span> <span class="op">-</span><span class="fl">1</span> <span class="op">+</span> <span class="va">cyl</span> <span class="op">+</span> <span class="va">hp</span> <span class="op">+</span> <span class="va">gear</span>, </span>
 <span>             keep <span class="op">=</span> <span class="st">"type"</span><span class="op">)</span></span>
-<span><span class="co">#&gt;                   cyl4 cyl6 cyl8 gear4 gear5       mpgz       dispz        hpz</span></span>
-<span><span class="co">#&gt; Mazda RX4            0    1    0     1     0  0.1508848 -0.57061982 -0.5350928</span></span>
-<span><span class="co">#&gt; Mazda RX4 Wag        0    1    0     1     0  0.1508848 -0.57061982 -0.5350928</span></span>
-<span><span class="co">#&gt; Datsun 710           1    0    0     1     0  0.4495434 -0.99018209 -0.7830405</span></span>
-<span><span class="co">#&gt; Hornet 4 Drive       0    1    0     0     0  0.2172534  0.22009369 -0.5350928</span></span>
-<span><span class="co">#&gt; Hornet Sportabout    0    0    1     0     0 -0.2307345  1.04308123  0.4129422</span></span>
-<span><span class="co">#&gt; Valiant              0    1    0     0     0 -0.3302874 -0.04616698 -0.6080186</span></span>
-<span><span class="co">#&gt;                        dratz          wtz      qsecz        vsz        amz</span></span>
-<span><span class="co">#&gt; Mazda RX4          0.5675137 -0.610399567 -0.7771651 -0.8680278  1.1899014</span></span>
-<span><span class="co">#&gt; Mazda RX4 Wag      0.5675137 -0.349785269 -0.4637808 -0.8680278  1.1899014</span></span>
-<span><span class="co">#&gt; Datsun 710         0.4739996 -0.917004624  0.4260068  1.1160357  1.1899014</span></span>
-<span><span class="co">#&gt; Hornet 4 Drive    -0.9661175 -0.002299538  0.8904872  1.1160357 -0.8141431</span></span>
-<span><span class="co">#&gt; Hornet Sportabout -0.8351978  0.227654255 -0.4637808 -0.8680278 -0.8141431</span></span>
-<span><span class="co">#&gt; Valiant           -1.5646078  0.248094592  1.3269868  1.1160357 -0.8141431</span></span>
-<span><span class="co">#&gt;                        carbz              type</span></span>
-<span><span class="co">#&gt; Mazda RX4          0.7352031         Mazda RX4</span></span>
-<span><span class="co">#&gt; Mazda RX4 Wag      0.7352031     Mazda RX4 Wag</span></span>
-<span><span class="co">#&gt; Datsun 710        -1.1221521        Datsun 710</span></span>
-<span><span class="co">#&gt; Hornet 4 Drive    -1.1221521    Hornet 4 Drive</span></span>
-<span><span class="co">#&gt; Hornet Sportabout -0.5030337 Hornet Sportabout</span></span>
-<span><span class="co">#&gt; Valiant           -1.1221521           Valiant</span></span>
-<span><span class="co">#&gt;  [ reached 'max' / getOption("max.print") -- omitted 26 rows ]</span></span></code></pre></div>
+<span><span class="co">#&gt;                   cyl4 cyl6 cyl8 gear4 gear5       mpgz        hpz</span></span>
+<span><span class="co">#&gt; Mazda RX4            0    1    0     1     0  0.1508848 -0.5350928</span></span>
+<span><span class="co">#&gt; Mazda RX4 Wag        0    1    0     1     0  0.1508848 -0.5350928</span></span>
+<span><span class="co">#&gt; Datsun 710           1    0    0     1     0  0.4495434 -0.7830405</span></span>
+<span><span class="co">#&gt; Hornet 4 Drive       0    1    0     0     0  0.2172534 -0.5350928</span></span>
+<span><span class="co">#&gt; Hornet Sportabout    0    0    1     0     0 -0.2307345  0.4129422</span></span>
+<span><span class="co">#&gt; Valiant              0    1    0     0     0 -0.3302874 -0.6080186</span></span>
+<span><span class="co">#&gt; Duster 360           0    0    1     0     0 -0.9607889  1.4339030</span></span>
+<span><span class="co">#&gt; Merc 240D            1    0    0     1     0  0.7150178 -1.2351802</span></span>
+<span><span class="co">#&gt; Merc 230             1    0    0     1     0  0.4495434 -0.7538702</span></span>
+<span><span class="co">#&gt; Merc 280             0    1    0     1     0 -0.1477738 -0.3454858</span></span>
+<span><span class="co">#&gt; Merc 280C            0    1    0     1     0 -0.3800638 -0.3454858</span></span>
+<span><span class="co">#&gt; Merc 450SE           0    0    1     0     0 -0.6123539  0.4858679</span></span>
+<span><span class="co">#&gt;                                type</span></span>
+<span><span class="co">#&gt; Mazda RX4                 Mazda RX4</span></span>
+<span><span class="co">#&gt; Mazda RX4 Wag         Mazda RX4 Wag</span></span>
+<span><span class="co">#&gt; Datsun 710               Datsun 710</span></span>
+<span><span class="co">#&gt; Hornet 4 Drive       Hornet 4 Drive</span></span>
+<span><span class="co">#&gt; Hornet Sportabout Hornet Sportabout</span></span>
+<span><span class="co">#&gt; Valiant                     Valiant</span></span>
+<span><span class="co">#&gt; Duster 360               Duster 360</span></span>
+<span><span class="co">#&gt; Merc 240D                 Merc 240D</span></span>
+<span><span class="co">#&gt; Merc 230                   Merc 230</span></span>
+<span><span class="co">#&gt; Merc 280                   Merc 280</span></span>
+<span><span class="co">#&gt; Merc 280C                 Merc 280C</span></span>
+<span><span class="co">#&gt; Merc 450SE               Merc 450SE</span></span>
+<span><span class="co">#&gt;  [ reached 'max' / getOption("max.print") -- omitted 20 rows ]</span></span></code></pre></div>
 <p>This can also be a character vector, and let’s you specify which
 columns to keep.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
@@ -241,47 +235,46 @@ columns to keep.</p>
 <span>  <span class="va">mpg</span> <span class="op">~</span> <span class="op">-</span><span class="fl">1</span> <span class="op">+</span> <span class="va">cyl</span> <span class="op">+</span> <span class="va">hp</span> <span class="op">+</span> <span class="va">gear</span>, </span>
 <span>  keep <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"type"</span>, <span class="st">"mpg"</span>, <span class="st">"cyl"</span>, <span class="st">"hp"</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
-<span><span class="co">#&gt;                   cyl4 cyl6 cyl8 gear4 gear5       mpgz      dispz        hpz</span></span>
-<span><span class="co">#&gt; Mazda RX4            0    1    0     1     0  0.1508848 -0.5706198 -0.5350928</span></span>
-<span><span class="co">#&gt; Mazda RX4 Wag        0    1    0     1     0  0.1508848 -0.5706198 -0.5350928</span></span>
-<span><span class="co">#&gt; Datsun 710           1    0    0     1     0  0.4495434 -0.9901821 -0.7830405</span></span>
-<span><span class="co">#&gt; Hornet 4 Drive       0    1    0     0     0  0.2172534  0.2200937 -0.5350928</span></span>
-<span><span class="co">#&gt; Hornet Sportabout    0    0    1     0     0 -0.2307345  1.0430812  0.4129422</span></span>
-<span><span class="co">#&gt;                        dratz          wtz      qsecz        vsz        amz</span></span>
-<span><span class="co">#&gt; Mazda RX4          0.5675137 -0.610399567 -0.7771651 -0.8680278  1.1899014</span></span>
-<span><span class="co">#&gt; Mazda RX4 Wag      0.5675137 -0.349785269 -0.4637808 -0.8680278  1.1899014</span></span>
-<span><span class="co">#&gt; Datsun 710         0.4739996 -0.917004624  0.4260068  1.1160357  1.1899014</span></span>
-<span><span class="co">#&gt; Hornet 4 Drive    -0.9661175 -0.002299538  0.8904872  1.1160357 -0.8141431</span></span>
-<span><span class="co">#&gt; Hornet Sportabout -0.8351978  0.227654255 -0.4637808 -0.8680278 -0.8141431</span></span>
-<span><span class="co">#&gt;                        carbz              type  mpg cyl  hp</span></span>
-<span><span class="co">#&gt; Mazda RX4          0.7352031         Mazda RX4 21.0   6 110</span></span>
-<span><span class="co">#&gt; Mazda RX4 Wag      0.7352031     Mazda RX4 Wag 21.0   6 110</span></span>
-<span><span class="co">#&gt; Datsun 710        -1.1221521        Datsun 710 22.8   4  93</span></span>
-<span><span class="co">#&gt; Hornet 4 Drive    -1.1221521    Hornet 4 Drive 21.4   6 110</span></span>
-<span><span class="co">#&gt; Hornet Sportabout -0.5030337 Hornet Sportabout 18.7   8 175</span></span>
-<span><span class="co">#&gt;  [ reached 'max' / getOption("max.print") -- omitted 27 rows ]</span></span>
+<span><span class="co">#&gt;                   cyl4 cyl6 cyl8 gear4 gear5       mpgz        hpz</span></span>
+<span><span class="co">#&gt; Mazda RX4            0    1    0     1     0  0.1508848 -0.5350928</span></span>
+<span><span class="co">#&gt; Mazda RX4 Wag        0    1    0     1     0  0.1508848 -0.5350928</span></span>
+<span><span class="co">#&gt; Datsun 710           1    0    0     1     0  0.4495434 -0.7830405</span></span>
+<span><span class="co">#&gt; Hornet 4 Drive       0    1    0     0     0  0.2172534 -0.5350928</span></span>
+<span><span class="co">#&gt; Hornet Sportabout    0    0    1     0     0 -0.2307345  0.4129422</span></span>
+<span><span class="co">#&gt; Valiant              0    1    0     0     0 -0.3302874 -0.6080186</span></span>
+<span><span class="co">#&gt; Duster 360           0    0    1     0     0 -0.9607889  1.4339030</span></span>
+<span><span class="co">#&gt; Merc 240D            1    0    0     1     0  0.7150178 -1.2351802</span></span>
+<span><span class="co">#&gt; Merc 230             1    0    0     1     0  0.4495434 -0.7538702</span></span>
+<span><span class="co">#&gt;                                type  mpg cyl  hp</span></span>
+<span><span class="co">#&gt; Mazda RX4                 Mazda RX4 21.0   6 110</span></span>
+<span><span class="co">#&gt; Mazda RX4 Wag         Mazda RX4 Wag 21.0   6 110</span></span>
+<span><span class="co">#&gt; Datsun 710               Datsun 710 22.8   4  93</span></span>
+<span><span class="co">#&gt; Hornet 4 Drive       Hornet 4 Drive 21.4   6 110</span></span>
+<span><span class="co">#&gt; Hornet Sportabout Hornet Sportabout 18.7   8 175</span></span>
+<span><span class="co">#&gt; Valiant                     Valiant 18.1   6 105</span></span>
+<span><span class="co">#&gt; Duster 360               Duster 360 14.3   8 245</span></span>
+<span><span class="co">#&gt; Merc 240D                 Merc 240D 24.4   4  62</span></span>
+<span><span class="co">#&gt; Merc 230                   Merc 230 22.8   4  95</span></span>
+<span><span class="co">#&gt;  [ reached 'max' / getOption("max.print") -- omitted 23 rows ]</span></span>
 <span></span>
 <span><span class="co"># Keeping all columns</span></span>
 <span><span class="fu"><a href="../reference/make_fs_qdec.html">make_fs_qdec</a></span><span class="op">(</span></span>
 <span>  <span class="va">cars</span>, </span>
 <span>  <span class="va">mpg</span> <span class="op">~</span> <span class="op">-</span><span class="fl">1</span> <span class="op">+</span> <span class="va">cyl</span> <span class="op">+</span> <span class="va">hp</span>, </span>
 <span>  keep <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">cars</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt;                cyl4 cyl6 cyl8      mpgz      dispz        hpz      dratz</span></span>
-<span><span class="co">#&gt; Mazda RX4         0    1    0 0.1508848 -0.5706198 -0.5350928  0.5675137</span></span>
-<span><span class="co">#&gt; Mazda RX4 Wag     0    1    0 0.1508848 -0.5706198 -0.5350928  0.5675137</span></span>
-<span><span class="co">#&gt; Datsun 710        1    0    0 0.4495434 -0.9901821 -0.7830405  0.4739996</span></span>
-<span><span class="co">#&gt; Hornet 4 Drive    0    1    0 0.2172534  0.2200937 -0.5350928 -0.9661175</span></span>
-<span><span class="co">#&gt;                         wtz      qsecz        vsz        amz      carbz  mpg</span></span>
-<span><span class="co">#&gt; Mazda RX4      -0.610399567 -0.7771651 -0.8680278  1.1899014  0.7352031 21.0</span></span>
-<span><span class="co">#&gt; Mazda RX4 Wag  -0.349785269 -0.4637808 -0.8680278  1.1899014  0.7352031 21.0</span></span>
-<span><span class="co">#&gt; Datsun 710     -0.917004624  0.4260068  1.1160357  1.1899014 -1.1221521 22.8</span></span>
-<span><span class="co">#&gt; Hornet 4 Drive -0.002299538  0.8904872  1.1160357 -0.8141431 -1.1221521 21.4</span></span>
-<span><span class="co">#&gt;                cyl disp  hp drat    wt  qsec vs am gear carb           type</span></span>
-<span><span class="co">#&gt; Mazda RX4        6  160 110 3.90 2.620 16.46  0  1    4    4      Mazda RX4</span></span>
-<span><span class="co">#&gt; Mazda RX4 Wag    6  160 110 3.90 2.875 17.02  0  1    4    4  Mazda RX4 Wag</span></span>
-<span><span class="co">#&gt; Datsun 710       4  108  93 3.85 2.320 18.61  1  1    4    1     Datsun 710</span></span>
-<span><span class="co">#&gt; Hornet 4 Drive   6  258 110 3.08 3.215 19.44  1  0    3    1 Hornet 4 Drive</span></span>
-<span><span class="co">#&gt;  [ reached 'max' / getOption("max.print") -- omitted 28 rows ]</span></span></code></pre></div>
+<span><span class="co">#&gt;                   cyl4 cyl6 cyl8       mpgz        hpz  mpg cyl disp  hp drat</span></span>
+<span><span class="co">#&gt; Mazda RX4            0    1    0  0.1508848 -0.5350928 21.0   6  160 110 3.90</span></span>
+<span><span class="co">#&gt; Mazda RX4 Wag        0    1    0  0.1508848 -0.5350928 21.0   6  160 110 3.90</span></span>
+<span><span class="co">#&gt; Datsun 710           1    0    0  0.4495434 -0.7830405 22.8   4  108  93 3.85</span></span>
+<span><span class="co">#&gt; Hornet 4 Drive       0    1    0  0.2172534 -0.5350928 21.4   6  258 110 3.08</span></span>
+<span><span class="co">#&gt; Hornet Sportabout    0    0    1 -0.2307345  0.4129422 18.7   8  360 175 3.15</span></span>
+<span><span class="co">#&gt;                      wt  qsec vs am gear carb              type</span></span>
+<span><span class="co">#&gt; Mazda RX4         2.620 16.46  0  1    4    4         Mazda RX4</span></span>
+<span><span class="co">#&gt; Mazda RX4 Wag     2.875 17.02  0  1    4    4     Mazda RX4 Wag</span></span>
+<span><span class="co">#&gt; Datsun 710        2.320 18.61  1  1    4    1        Datsun 710</span></span>
+<span><span class="co">#&gt; Hornet 4 Drive    3.215 19.44  1  0    3    1    Hornet 4 Drive</span></span>
+<span><span class="co">#&gt; Hornet Sportabout 3.440 17.02  0  0    3    2 Hornet Sportabout</span></span>
+<span><span class="co">#&gt;  [ reached 'max' / getOption("max.print") -- omitted 27 rows ]</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="plotting-the-qdec">Plotting the qdec<a class="anchor" aria-label="anchor" href="#plotting-the-qdec"></a>
