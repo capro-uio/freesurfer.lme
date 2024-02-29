@@ -3,7 +3,7 @@ pkgdown: 2.0.7
 pkgdown_sha: ~
 articles:
   neuromat: neuromat.html
-last_built: 2024-02-29T20:35Z
+last_built: 2024-02-29T20:36Z
 urls:
   reference: http://www.capro.dev/freesurfer.lme/reference
   article: http://www.capro.dev/freesurfer.lme/articles
