@@ -66,7 +66,7 @@
 </nav><div class="container template-home">
 <div class="row">
   <main id="main" class="col-md-9"><div class="section level1">
-<div class="page-header"><h1 id="freesurferlme">freesurfer.lme<a class="anchor" aria-label="anchor" href="#freesurferlme"></a>
+<div class="page-header"><h1 id="neuromat">neuromat<a class="anchor" aria-label="anchor" href="#neuromat"></a>
 </h1></div>
 <!-- badges: start -->
 
@@ -74,10 +74,10 @@
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
-<p>You can install the development version of <code>freesurfer.lme</code> like so:</p>
+<p>You can install the development version of <code>neuromat</code> like so:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Install Capro R-universe</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">'freesurfer.lme'</span>, </span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">'neuromat'</span>, </span>
 <span>  repos <span class="op">=</span> <span class="st">'https://capro-uio.r-universe.dev'</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
@@ -85,64 +85,72 @@
 </h2>
 <p>Leveraging R’s power of making models, we can create a QDEC file from a model formula and a data frame. The function relies on the correct setup of data (categoricals as factors etc), which you would normally do in R.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/capro-uio/freesurfer.lme" class="external-link">freesurfer.lme</a></span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/capro-uio/neuromat" class="external-link">neuromat</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># prep data</span></span>
 <span><span class="va">cars</span> <span class="op">&lt;-</span> <span class="va">mtcars</span></span>
-<span><span class="va">cars</span><span class="op">$</span><span class="va">type</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/row.names.html" class="external-link">row.names</a></span><span class="op">(</span><span class="va">cars</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/row.names.html" class="external-link">row.names</a></span><span class="op">(</span><span class="va">cars</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="cn">NULL</span></span>
 <span><span class="va">cars</span><span class="op">$</span><span class="va">cyl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">cars</span><span class="op">$</span><span class="va">cyl</span><span class="op">)</span></span>
 <span><span class="va">cars</span><span class="op">$</span><span class="va">gear</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">cars</span><span class="op">$</span><span class="va">gear</span><span class="op">)</span></span>
 <span><span class="va">cars</span></span>
-<span><span class="co">#&gt;    mpg cyl disp  hp drat    wt  qsec vs am gear carb              type</span></span>
-<span><span class="co">#&gt; 1 21.0   6  160 110 3.90 2.620 16.46  0  1    4    4         Mazda RX4</span></span>
-<span><span class="co">#&gt; 2 21.0   6  160 110 3.90 2.875 17.02  0  1    4    4     Mazda RX4 Wag</span></span>
-<span><span class="co">#&gt; 3 22.8   4  108  93 3.85 2.320 18.61  1  1    4    1        Datsun 710</span></span>
-<span><span class="co">#&gt; 4 21.4   6  258 110 3.08 3.215 19.44  1  0    3    1    Hornet 4 Drive</span></span>
-<span><span class="co">#&gt; 5 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2 Hornet Sportabout</span></span>
+<span><span class="co">#&gt;                    mpg cyl disp  hp drat    wt  qsec vs am gear carb</span></span>
+<span><span class="co">#&gt; Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4</span></span>
+<span><span class="co">#&gt; Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4</span></span>
+<span><span class="co">#&gt; Datsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1</span></span>
+<span><span class="co">#&gt; Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1</span></span>
+<span><span class="co">#&gt; Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2</span></span>
 <span><span class="co">#&gt;  [ reached 'max' / getOption("max.print") -- omitted 27 rows ]</span></span></code></pre></div>
 <p>Make sure to include -1 to remove intercept</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/freesurfer.lme/man/make_qdec.html" class="external-link">make_qdec</a></span><span class="op">(</span><span class="va">cars</span>, <span class="va">mpg</span> <span class="op">~</span> <span class="op">-</span><span class="fl">1</span> <span class="op">+</span> <span class="va">cyl</span> <span class="op">+</span> <span class="va">hp</span><span class="op">)</span></span>
-<span><span class="co">#&gt;    cyl4 cyl6 cyl8  hp       mpgz        hpz</span></span>
-<span><span class="co">#&gt; 1     0    1    0 110  0.1508848 -0.5350928</span></span>
-<span><span class="co">#&gt; 2     0    1    0 110  0.1508848 -0.5350928</span></span>
-<span><span class="co">#&gt; 3     1    0    0  93  0.4495434 -0.7830405</span></span>
-<span><span class="co">#&gt; 4     0    1    0 110  0.2172534 -0.5350928</span></span>
-<span><span class="co">#&gt; 5     0    0    1 175 -0.2307345  0.4129422</span></span>
-<span><span class="co">#&gt; 6     0    1    0 105 -0.3302874 -0.6080186</span></span>
-<span><span class="co">#&gt; 7     0    0    1 245 -0.9607889  1.4339030</span></span>
-<span><span class="co">#&gt; 8     1    0    0  62  0.7150178 -1.2351802</span></span>
-<span><span class="co">#&gt; 9     1    0    0  95  0.4495434 -0.7538702</span></span>
-<span><span class="co">#&gt; 10    0    1    0 123 -0.1477738 -0.3454858</span></span>
-<span><span class="co">#&gt;  [ reached 'max' / getOption("max.print") -- omitted 22 rows ]</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="reference/make_fs_qdec.html">make_fs_qdec</a></span><span class="op">(</span><span class="va">cars</span>, <span class="va">mpg</span> <span class="op">~</span> <span class="op">-</span><span class="fl">1</span> <span class="op">+</span> <span class="va">cyl</span> <span class="op">+</span> <span class="va">hp</span><span class="op">)</span></span>
+<span><span class="co">#&gt;                   cyl4 cyl6 cyl8       mpgz        hpz</span></span>
+<span><span class="co">#&gt; Mazda RX4            0    1    0  0.1508848 -0.5350928</span></span>
+<span><span class="co">#&gt; Mazda RX4 Wag        0    1    0  0.1508848 -0.5350928</span></span>
+<span><span class="co">#&gt; Datsun 710           1    0    0  0.4495434 -0.7830405</span></span>
+<span><span class="co">#&gt; Hornet 4 Drive       0    1    0  0.2172534 -0.5350928</span></span>
+<span><span class="co">#&gt; Hornet Sportabout    0    0    1 -0.2307345  0.4129422</span></span>
+<span><span class="co">#&gt; Valiant              0    1    0 -0.3302874 -0.6080186</span></span>
+<span><span class="co">#&gt; Duster 360           0    0    1 -0.9607889  1.4339030</span></span>
+<span><span class="co">#&gt; Merc 240D            1    0    0  0.7150178 -1.2351802</span></span>
+<span><span class="co">#&gt; Merc 230             1    0    0  0.4495434 -0.7538702</span></span>
+<span><span class="co">#&gt; Merc 280             0    1    0 -0.1477738 -0.3454858</span></span>
+<span><span class="co">#&gt; Merc 280C            0    1    0 -0.3800638 -0.3454858</span></span>
+<span><span class="co">#&gt; Merc 450SE           0    0    1 -0.6123539  0.4858679</span></span>
+<span><span class="co">#&gt;  [ reached 'max' / getOption("max.print") -- omitted 20 rows ]</span></span></code></pre></div>
 <p>If not, the model does not expose all levels of factors</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/freesurfer.lme/man/make_qdec.html" class="external-link">make_qdec</a></span><span class="op">(</span><span class="va">cars</span>, <span class="va">mpg</span> <span class="op">~</span> <span class="va">cyl</span> <span class="op">+</span> <span class="va">hp</span><span class="op">)</span></span>
-<span><span class="co">#&gt;    (Intercept) cyl6 cyl8  hp       mpgz        hpz</span></span>
-<span><span class="co">#&gt; 1            1    1    0 110  0.1508848 -0.5350928</span></span>
-<span><span class="co">#&gt; 2            1    1    0 110  0.1508848 -0.5350928</span></span>
-<span><span class="co">#&gt; 3            1    0    0  93  0.4495434 -0.7830405</span></span>
-<span><span class="co">#&gt; 4            1    1    0 110  0.2172534 -0.5350928</span></span>
-<span><span class="co">#&gt; 5            1    0    1 175 -0.2307345  0.4129422</span></span>
-<span><span class="co">#&gt; 6            1    1    0 105 -0.3302874 -0.6080186</span></span>
-<span><span class="co">#&gt; 7            1    0    1 245 -0.9607889  1.4339030</span></span>
-<span><span class="co">#&gt; 8            1    0    0  62  0.7150178 -1.2351802</span></span>
-<span><span class="co">#&gt; 9            1    0    0  95  0.4495434 -0.7538702</span></span>
-<span><span class="co">#&gt; 10           1    1    0 123 -0.1477738 -0.3454858</span></span>
-<span><span class="co">#&gt;  [ reached 'max' / getOption("max.print") -- omitted 22 rows ]</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="reference/make_fs_qdec.html">make_fs_qdec</a></span><span class="op">(</span><span class="va">cars</span>, <span class="va">mpg</span> <span class="op">~</span> <span class="va">cyl</span> <span class="op">+</span> <span class="va">hp</span><span class="op">)</span></span>
+<span><span class="co">#&gt;                   (Intercept) cyl6 cyl8       mpgz        hpz</span></span>
+<span><span class="co">#&gt; Mazda RX4                   1    1    0  0.1508848 -0.5350928</span></span>
+<span><span class="co">#&gt; Mazda RX4 Wag               1    1    0  0.1508848 -0.5350928</span></span>
+<span><span class="co">#&gt; Datsun 710                  1    0    0  0.4495434 -0.7830405</span></span>
+<span><span class="co">#&gt; Hornet 4 Drive              1    1    0  0.2172534 -0.5350928</span></span>
+<span><span class="co">#&gt; Hornet Sportabout           1    0    1 -0.2307345  0.4129422</span></span>
+<span><span class="co">#&gt; Valiant                     1    1    0 -0.3302874 -0.6080186</span></span>
+<span><span class="co">#&gt; Duster 360                  1    0    1 -0.9607889  1.4339030</span></span>
+<span><span class="co">#&gt; Merc 240D                   1    0    0  0.7150178 -1.2351802</span></span>
+<span><span class="co">#&gt; Merc 230                    1    0    0  0.4495434 -0.7538702</span></span>
+<span><span class="co">#&gt; Merc 280                    1    1    0 -0.1477738 -0.3454858</span></span>
+<span><span class="co">#&gt; Merc 280C                   1    1    0 -0.3800638 -0.3454858</span></span>
+<span><span class="co">#&gt; Merc 450SE                  1    0    1 -0.6123539  0.4858679</span></span>
+<span><span class="co">#&gt;  [ reached 'max' / getOption("max.print") -- omitted 20 rows ]</span></span></code></pre></div>
 <p><code>-1</code> makes sure you get a qdec as expected from the <a href="https://surfer.nmr.mgh.harvard.edu/fswiki/LinearMixedEffectsModels" class="external-link">Freesurfer documentation</a></p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/freesurfer.lme/man/make_qdec.html" class="external-link">make_qdec</a></span><span class="op">(</span><span class="va">cars</span>, <span class="va">mpg</span> <span class="op">~</span> <span class="op">-</span><span class="fl">1</span> <span class="op">+</span> <span class="va">cyl</span> <span class="op">+</span> <span class="va">hp</span> <span class="op">+</span> <span class="va">gear</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   cyl4 cyl6 cyl8  hp gear4 gear5       mpgz        hpz</span></span>
-<span><span class="co">#&gt; 1    0    1    0 110     1     0  0.1508848 -0.5350928</span></span>
-<span><span class="co">#&gt; 2    0    1    0 110     1     0  0.1508848 -0.5350928</span></span>
-<span><span class="co">#&gt; 3    1    0    0  93     1     0  0.4495434 -0.7830405</span></span>
-<span><span class="co">#&gt; 4    0    1    0 110     0     0  0.2172534 -0.5350928</span></span>
-<span><span class="co">#&gt; 5    0    0    1 175     0     0 -0.2307345  0.4129422</span></span>
-<span><span class="co">#&gt; 6    0    1    0 105     0     0 -0.3302874 -0.6080186</span></span>
-<span><span class="co">#&gt; 7    0    0    1 245     0     0 -0.9607889  1.4339030</span></span>
-<span><span class="co">#&gt;  [ reached 'max' / getOption("max.print") -- omitted 25 rows ]</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="reference/make_fs_qdec.html">make_fs_qdec</a></span><span class="op">(</span><span class="va">cars</span>, <span class="va">mpg</span> <span class="op">~</span> <span class="op">-</span><span class="fl">1</span> <span class="op">+</span> <span class="va">cyl</span> <span class="op">+</span> <span class="va">hp</span> <span class="op">+</span> <span class="va">gear</span><span class="op">)</span></span>
+<span><span class="co">#&gt;                   cyl4 cyl6 cyl8 gear4 gear5       mpgz        hpz</span></span>
+<span><span class="co">#&gt; Mazda RX4            0    1    0     1     0  0.1508848 -0.5350928</span></span>
+<span><span class="co">#&gt; Mazda RX4 Wag        0    1    0     1     0  0.1508848 -0.5350928</span></span>
+<span><span class="co">#&gt; Datsun 710           1    0    0     1     0  0.4495434 -0.7830405</span></span>
+<span><span class="co">#&gt; Hornet 4 Drive       0    1    0     0     0  0.2172534 -0.5350928</span></span>
+<span><span class="co">#&gt; Hornet Sportabout    0    0    1     0     0 -0.2307345  0.4129422</span></span>
+<span><span class="co">#&gt; Valiant              0    1    0     0     0 -0.3302874 -0.6080186</span></span>
+<span><span class="co">#&gt; Duster 360           0    0    1     0     0 -0.9607889  1.4339030</span></span>
+<span><span class="co">#&gt; Merc 240D            1    0    0     1     0  0.7150178 -1.2351802</span></span>
+<span><span class="co">#&gt;  [ reached 'max' / getOption("max.print") -- omitted 24 rows ]</span></span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">qdec</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/make_fs_qdec.html">make_fs_qdec</a></span><span class="op">(</span><span class="va">cars</span>, </span>
+<span>                  <span class="va">mpg</span> <span class="op">~</span> <span class="op">-</span><span class="fl">1</span> <span class="op">+</span> <span class="va">cyl</span> <span class="op">+</span> <span class="va">hp</span> <span class="op">+</span> <span class="va">gear</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">qdec</span><span class="op">)</span></span></code></pre></div>
+<p><img src="reference/figures/README-example4-1.png" width="100%"></p>
 </div>
 </div>
   </main><aside class="col-md-3"><div class="links">
@@ -179,8 +187,8 @@
 <div class="dev-status">
 <h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://github.com/capro-uio/freesurfer.lme/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/capro-uio/freesurfer.lme/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a></li>
-<li><a href="https://CRAN.R-project.org/package=freesurfer.lme" class="external-link"><img src="https://www.r-pkg.org/badges/version/freesurfer.lme" alt="CRAN status"></a></li>
+<li><a href="https://github.com/capro-uio/neuromat/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/capro-uio/neuromat/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a></li>
+<li><a href="https://CRAN.R-project.org/package=neuromat" class="external-link"><img src="https://www.r-pkg.org/badges/version/neuromat" alt="CRAN status"></a></li>
 <li><a href="https://lifecycle.r-lib.org/articles/stages.html#experimental" class="external-link"><img src="https://img.shields.io/badge/lifecycle-experimental-orange.svg" alt="Lifecycle: experimental"></a></li>
 </ul>
 </div>
