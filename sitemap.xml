@@ -19,7 +19,13 @@
     <loc>http://www.capro.dev/freesurfer.lme/reference/index.html</loc>
   </url>
   <url>
-    <loc>http://www.capro.dev/freesurfer.lme/reference/make_qdec.html</loc>
+    <loc>http://www.capro.dev/freesurfer.lme/reference/make_fs_qdec.html</loc>
+  </url>
+  <url>
+    <loc>http://www.capro.dev/freesurfer.lme/reference/plot.qdec.html</loc>
+  </url>
+  <url>
+    <loc>http://www.capro.dev/freesurfer.lme/reference/qdec.html</loc>
   </url>
   <url>
     <loc>http://www.capro.dev/freesurfer.lme/reference/scale_vec.html</loc>
