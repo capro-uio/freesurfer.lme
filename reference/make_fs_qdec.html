@@ -24,7 +24,10 @@ data in the output."><!-- mathjax --><script src="https://cdnjs.cloudflare.com/a
     </button>
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
-      <ul class="navbar-nav me-auto"><li class="active nav-item">
+      <ul class="navbar-nav me-auto"><li class="nav-item">
+  <a class="nav-link" href="../articles/neuromat.html">Get started</a>
+</li>
+<li class="active nav-item">
   <a class="nav-link" href="../reference/index.html">Reference</a>
 </li>
       </ul><form class="form-inline my-2 my-lg-0" role="search">
@@ -57,7 +60,7 @@ data in the output.</p>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">make_fs_qdec</span><span class="op">(</span><span class="va">data</span>, <span class="va">formula</span>, path <span class="op">=</span> <span class="cn">NULL</span>, keep_orig <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">make_fs_qdec</span><span class="op">(</span><span class="va">data</span>, <span class="va">formula</span>, path <span class="op">=</span> <span class="cn">NULL</span>, keep <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -80,7 +83,7 @@ remove the intercept.</p></dd>
 <dd><p>an option file path to write qdec to csv</p></dd>
 
 
-<dt>keep_orig</dt>
+<dt>keep</dt>
 <dd><p>logical or vector of column names,
 to keep the original data in the output.
 Default is <code>FALSE</code>.</p></dd>
@@ -103,7 +106,7 @@ the steps from the Freesurfer documentation.</p>
 <p>It is highly recommended to have the base-id's for Freesurfer
 in their own column, and request to have this remain
 in the qdec by using the id-column's name in the
-<code>keep_orig</code> argument.</p>
+<code>keep</code> argument.</p>
     </div>
 
     <div class="section level2">
@@ -165,7 +168,7 @@ in the qdec by using the id-column's name in the
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 3 more variables: vsz &lt;dbl&gt;, amz &lt;dbl&gt;, carbz &lt;dbl&gt;</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Keep the original data also in the output</span></span></span>
-<span class="r-in"><span><span class="fu">make_fs_qdec</span><span class="op">(</span><span class="va">cars</span>, <span class="va">mpg</span> <span class="op">~</span> <span class="op">-</span><span class="fl">1</span> <span class="op">+</span> <span class="va">cyl</span> <span class="op">+</span> <span class="va">hp</span>, keep_orig <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">make_fs_qdec</span><span class="op">(</span><span class="va">cars</span>, <span class="va">mpg</span> <span class="op">~</span> <span class="op">-</span><span class="fl">1</span> <span class="op">+</span> <span class="va">cyl</span> <span class="op">+</span> <span class="va">hp</span>, keep <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                     cyl4 cyl6 cyl8        mpgz       dispz         hpz</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Mazda RX4              0    1    0  0.15088482 -0.57061982 -0.53509284</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Mazda RX4 Wag          0    1    0  0.15088482 -0.57061982 -0.53509284</span>
@@ -268,7 +271,7 @@ in the qdec by using the id-column's name in the
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Keep the original data of specific columns</span></span></span>
 <span class="r-in"><span><span class="co"># Use a character vector</span></span></span>
-<span class="r-in"><span><span class="fu">make_fs_qdec</span><span class="op">(</span><span class="va">cars</span>, <span class="va">mpg</span> <span class="op">~</span> <span class="op">-</span><span class="fl">1</span> <span class="op">+</span> <span class="va">cyl</span> <span class="op">+</span> <span class="va">hp</span>, keep_orig <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"mpg"</span>, <span class="st">"gear"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">make_fs_qdec</span><span class="op">(</span><span class="va">cars</span>, <span class="va">mpg</span> <span class="op">~</span> <span class="op">-</span><span class="fl">1</span> <span class="op">+</span> <span class="va">cyl</span> <span class="op">+</span> <span class="va">hp</span>, keep <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"mpg"</span>, <span class="st">"gear"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                     cyl4 cyl6 cyl8        mpgz       dispz         hpz</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Mazda RX4              0    1    0  0.15088482 -0.57061982 -0.53509284</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Mazda RX4 Wag          0    1    0  0.15088482 -0.57061982 -0.53509284</span>
