@@ -1,0 +1,116 @@
+---
+title: "Getting started with Neuromat"
+output: rmarkdown::html_vignette
+vignette: |
+  %\VignetteIndexEntry{Getting started with Neuromat}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+  
+```{r, include = FALSE}
+options(max.print = 100)
+knitr::opts_chunk$set(
+collapse = TRUE,
+comment = "#>"
+)
+```
+
+Leveraging R's power of making models, we can create a QDEC file from a model formula and a data frame.
+The function relies on the correct setup of data (categoricals as factors etc), which you would normally do in R.
+
+```{r setup}
+library(neuromat)
+```
+
+
+First, we prepare a data.frame.
+We will use the `mtcars` data to imagine what we want to do.
+We will make sure to convert the `cyl` and `gear` columns to factors, to prepare ourselves for how to deal with categorical
+variables in the qdec file.
+
+```{r dataprep}
+cars <- mtcars
+cars$cyl <- factor(cars$cyl)
+cars$gear <- factor(cars$gear)
+cars
+```
+
+
+### The model formula
+
+To create a qdec object, we use the `make_fs_qdec` function,
+with a formula and the data.
+The formula decides what variables the qdec file will contain,
+and will binarise the levels of factors,
+and scale continuous variables so they have a mean of 0 and
+a standard deviation of 1.
+Make sure to include `-1` to remove intercept, 
+which would make sure that factors have all levels represented in the qdec file.
+
+```{r example1}
+make_fs_qdec(cars, mpg ~ -1 + cyl + hp)
+```
+
+If you do not include `-1`, the model will not expose all levels of factors,
+but capture the first levels of each factor in the `Intercept`
+which will consist of only the value `1`.
+
+```{r example2}
+make_fs_qdec(cars, mpg ~ cyl + hp)
+```
+
+
+`-1` makes sure you get a qdec as expected
+from the [Freesurfer documentation](https://surfer.nmr.mgh.harvard.edu/fswiki/LinearMixedEffectsModels)
+
+### Keeping original data
+
+You can keep the original data in the qdec file by using the `keep` argument.
+This is useful if you want to keep the original data for reference,
+or if you want to use the qdec file for other purposes than just running a model.
+By default, `keep` is `FALSE`, and by switching to `TRUE` you keep the original data _of the columns in your model_.
+
+
+```{r keep1}
+make_fs_qdec(cars, mpg ~ -1 + cyl + hp, keep = TRUE)
+```
+
+It is recommended that you also have the base-id's of the data in their own column, which you can also request to have
+in the qdec by using the id-column's name in the `keep` argument.
+
+```{r keep2}
+cars$type <- row.names(cars) 
+make_fs_qdec(cars, 
+             mpg ~ -1 + cyl + hp + gear, 
+             keep = "type")
+```
+
+This can also be a character vector, and let's you specify which columns to keep.
+
+```{r keep3}
+cars$type <- row.names(cars) 
+make_fs_qdec(
+  cars, 
+  mpg ~ -1 + cyl + hp + gear, 
+  keep = c("type", "mpg", "cyl", "hp")
+)
+
+# Keeping all columns
+make_fs_qdec(
+  cars, 
+  mpg ~ -1 + cyl + hp, 
+  keep = names(cars))
+```
+
+
+
+### Plotting the qdec
+
+Visualise the qdec file with the `plot` function.
+This is a good way to confirm what you expect the data to look like.
+
+```{r example4}
+qdec <- make_fs_qdec(cars, 
+                     mpg ~ -1 + cyl + hp + gear)
+plot(qdec)
+```

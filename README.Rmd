@@ -1,0 +1,54 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+options(max.print = 60)
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# neuromat
+
+<!-- badges: start -->
+[![R-CMD-check](https://github.com/capro-uio/neuromat/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/capro-uio/neuromat/actions/workflows/R-CMD-check.yaml)
+[![CRAN status](https://www.r-pkg.org/badges/version/neuromat)](https://CRAN.R-project.org/package=neuromat)
+[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+[![Codecov test coverage](https://codecov.io/gh/capro-uio/neuromat/branch/main/graph/badge.svg)](https://app.codecov.io/gh/capro-uio/neuromat?branch=main)
+<!-- badges: end -->
+
+Running vertex-wise linear mixed effects models in [Freesurfer](https://surfer.nmr.mgh.harvard.edu/fswiki/LinearMixedEffectsModels) requires a specific file format. 
+The qdec format requires neatly created binary columns for 
+categorical value levels, and is made more efficient if continuous
+variables are scaled (or de-meaned). 
+This package provides functions to create these files from R.
+
+
+## Installation
+
+You can install the development version of `neuromat` like so:
+
+``` r
+# Install Capro R-universe
+install.packages('neuromat', 
+  repos = 'https://capro-uio.r-universe.dev')
+```
+
+## Example
+
+```{r}
+library(neuromat)
+cars <- mtcars
+cars$cyl <- factor(cars$cyl)
+cars$gear <- factor(cars$gear)
+qdec <- make_fs_qdec(cars, mpg ~ -1 + cyl + hp)
+qdec
+
+plot(qdec)
+```

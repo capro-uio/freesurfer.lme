@@ -1,0 +1,11 @@
+^neuromat\.Rproj$
+^\.Rproj\.user$
+^LICENSE\.md$
+^README\.Rmd$
+^\.github$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
+^man-roxygen$
+^CODE_OF_CONDUCT\.md$
+^codecov\.yml$

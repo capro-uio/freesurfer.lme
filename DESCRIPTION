@@ -1,0 +1,32 @@
+Package: neuromat
+Title: Create Model Matrices for Neuroimaging Analyses
+Version: 0.0.0.9000
+Authors@R: 
+    person(
+    given = "Athanasia Mo", 
+    family = "Mowinckel",
+    email = "a.m.mowinckel@psykologi.uio.no", 
+    role = c("aut", "cre"),
+    comment = c(ORCID = "0000-0002-5756-0223"))
+Description: Neuroimaging software often requires the specification
+    of model matrices to run analyses. These can be difficult to 
+    correctly. This package helps neuroscientists to create such
+    This includes creating qdec-files for Freesurfer Linear Mixes
+    Effects models.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.3
+Imports: 
+    grDevices,
+    methods,
+    stats,
+    utils
+URL: https://github.com/capro-uio/neuromat, http://www.capro.dev/neuromat/
+BugReports: https://github.com/capro-uio/neuromat/issues
+Suggests: 
+    knitr,
+    rmarkdown,
+    testthat (>= 3.0.0)
+VignetteBuilder: knitr
+Config/testthat/edition: 3
