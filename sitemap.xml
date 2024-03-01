@@ -37,6 +37,9 @@
     <loc>http://www.capro.dev/freesurfer.lme/reference/qdec.html</loc>
   </url>
   <url>
+    <loc>http://www.capro.dev/freesurfer.lme/reference/scale_num_data.html</loc>
+  </url>
+  <url>
     <loc>http://www.capro.dev/freesurfer.lme/reference/scale_vec.html</loc>
   </url>
 </urlset>
