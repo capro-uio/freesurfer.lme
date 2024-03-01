@@ -92,22 +92,6 @@
 <span><span class="va">cars</span><span class="op">$</span><span class="va">cyl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">cars</span><span class="op">$</span><span class="va">cyl</span><span class="op">)</span></span>
 <span><span class="va">cars</span><span class="op">$</span><span class="va">gear</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">cars</span><span class="op">$</span><span class="va">gear</span><span class="op">)</span></span>
 <span><span class="va">qdec</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/make_fs_qdec.html">make_fs_qdec</a></span><span class="op">(</span><span class="va">cars</span>, <span class="va">mpg</span> <span class="op">~</span> <span class="op">-</span><span class="fl">1</span> <span class="op">+</span> <span class="va">cyl</span> <span class="op">+</span> <span class="va">hp</span><span class="op">)</span></span>
-<span><span class="va">qdec</span></span>
-<span><span class="co">#&gt;                   cyl4 cyl6 cyl8       mpgz        hpz</span></span>
-<span><span class="co">#&gt; Mazda RX4            0    1    0  0.1508848 -0.5350928</span></span>
-<span><span class="co">#&gt; Mazda RX4 Wag        0    1    0  0.1508848 -0.5350928</span></span>
-<span><span class="co">#&gt; Datsun 710           1    0    0  0.4495434 -0.7830405</span></span>
-<span><span class="co">#&gt; Hornet 4 Drive       0    1    0  0.2172534 -0.5350928</span></span>
-<span><span class="co">#&gt; Hornet Sportabout    0    0    1 -0.2307345  0.4129422</span></span>
-<span><span class="co">#&gt; Valiant              0    1    0 -0.3302874 -0.6080186</span></span>
-<span><span class="co">#&gt; Duster 360           0    0    1 -0.9607889  1.4339030</span></span>
-<span><span class="co">#&gt; Merc 240D            1    0    0  0.7150178 -1.2351802</span></span>
-<span><span class="co">#&gt; Merc 230             1    0    0  0.4495434 -0.7538702</span></span>
-<span><span class="co">#&gt; Merc 280             0    1    0 -0.1477738 -0.3454858</span></span>
-<span><span class="co">#&gt; Merc 280C            0    1    0 -0.3800638 -0.3454858</span></span>
-<span><span class="co">#&gt; Merc 450SE           0    0    1 -0.6123539  0.4858679</span></span>
-<span><span class="co">#&gt;  [ reached 'max' / getOption("max.print") -- omitted 20 rows ]</span></span>
-<span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">qdec</span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/README-unnamed-chunk-2-1.png" width="100%"></p>
 </div>
