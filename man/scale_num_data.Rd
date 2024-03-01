@@ -11,6 +11,9 @@ scale_num_data(data, vars)
 
 \item{vars}{variables selected}
 }
+\value{
+data.frame with scaled numeric variables
+}
 \description{
 Scale numeric variables in a data frame
 }

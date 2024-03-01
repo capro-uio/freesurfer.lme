@@ -34,6 +34,7 @@ test_that("make_fs_qdec works", {
 
   obj <- make_fs_qdec(cars, ~ -1 + cyl + gear,
                       keep = c("mpg", "gear"))
+  expect_s3_class(obj, "qdec")
   expect_equal(names(obj),
                c("cyl4", "cyl6", "cyl8", "gearz", "mpg", "gear"))
   expect_equal(obj$mpg, cars$mpg)
@@ -43,6 +44,7 @@ test_that("make_fs_qdec works", {
 
   obj <- make_fs_qdec(cars, mpg ~ -1 + cyl + gear,
                       keep = TRUE)
+  expect_s3_class(obj, "qdec")
   expect_equal(names(obj),
                c("cyl4", "cyl6", "cyl8", "mpgz", "gearz", "mpg", "cyl", "gear"
                ))
@@ -58,3 +60,18 @@ test_that("make_fs_qdec works", {
   unlink("test.csv")
 })
 
+test_that("qdec_struct works", {
+  sobj <- qdec_struct(mtcars, ~ -1 + cyl + gear, c("mpg", "gear", "cyl"))
+  expect_s3_class(sobj, "qdec")
+  expect_equal(names(sobj),
+               names(mtcars))
+  expect_equal(sobj$cyl, mtcars$cyl)
+  expect_equal(sobj$gear, mtcars$gear)
+  expect_equal(attr(sobj, "vars"), c("mpg", "gear", "cyl"))
+  expect_equal(attr(sobj, "formula"), ~ -1 + cyl + gear)
+
+  expect_error(qdec_struct(mtcars, ~ -1 + cyl + gear))
+  expect_error(qdec_struct(mtcars, ~ -1 + cyl + gear, TRUE))
+  expect_error(qdec_struct(mtcars, "hello", c("mpg")))
+  expect_error(qdec_struct(1:5, ~ -1 + cyl , c("mpg")))
+})

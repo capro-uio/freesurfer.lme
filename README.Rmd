@@ -48,7 +48,5 @@ cars <- mtcars
 cars$cyl <- factor(cars$cyl)
 cars$gear <- factor(cars$gear)
 qdec <- make_fs_qdec(cars, mpg ~ -1 + cyl + hp)
-qdec
-
 plot(qdec)
 ```

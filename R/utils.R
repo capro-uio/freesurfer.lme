@@ -20,7 +20,7 @@ scale_vec <- function(x, ...) {
 #' @param data data.frame
 #' @param vars variables selected
 #'
-#' @return
+#' @return data.frame with scaled numeric variables
 scale_num_data <- function(data, vars){
   if(!inherits(data, "data.frame")){
     stop("Input `data` must be a data.frame", call. = FALSE)

@@ -63,8 +63,8 @@ make_fs_qdec <- function(data,
     stop("`keep` cannot be ''. Use TRUE/FALSE or the names of columns.", call. = FALSE)
   }
 
-  qdec <- qdec(data, formula)
-  vars <- attr(qdec, "vars")
+  mm <- qdec(data, formula)
+  vars <- attr(mm, "vars")
 
   if(is(keep, "character")){
     vars <- keep
@@ -75,15 +75,19 @@ make_fs_qdec <- function(data,
     any(keep, is.character(keep))
   )
   if(add_orig){
-    qdec <- cbind(qdec, data)
+    mm <- cbind(mm, data)
   }
 
   # write to path if requested
   if(!is.null(path)){
-    write.csv(qdec, path, row.names = FALSE)
+    write.csv(mm, path, row.names = FALSE)
   }
 
-  qdec
+  qdec_struct(
+    mm,
+    formula,
+    vars
+  )
 }
 
 #' Freesurfer qdec constructor
@@ -114,16 +118,28 @@ qdec <- function(data, formula){
   dataz <- scale_num_data(data, vars)
 
   # combine model matrix and scaled data
-  qdec <- cbind(mm, dataz)
+  dt <- cbind(mm, dataz)
 
+  qdec_struct(dt, formula, vars)
+}
+
+qdec_struct <- function(data, formula, vars){
+  if(!is.data.frame(data)){
+    stop("Input `data` must be a data.frame", call. = FALSE)
+  }
+  if(!inherits(formula, "formula")){
+    stop("Input `formula` must be a formula", call. = FALSE)
+  }
+  if(!is.character(vars)){
+    stop("Input `vars` must be a character vector", call. = FALSE)
+  }
   structure(
-    qdec,
+    data,
     class   = c("qdec", "data.frame"),
     formula = formula,
     vars    = vars
   )
 }
-
 
 #' Plot qdec matrix
 #'
